@@ -1,5 +1,7 @@
 //your variable declarations here
 Spaceship bob;
+ArrayList <Asteroid> rock;
+
 Star[] shine = new Star[150];
 boolean wIsPressed = false;
 boolean dIsPressed = false;
@@ -12,6 +14,10 @@ public void setup()
   for(int i = 0; i < shine.length; i++){
   	shine[i] = new Star();
   }
+  rock = new ArrayList <Asteroid> ();
+  for(int i = 0; i < 10; i++){
+  	rock.add(new Asteroid());
+  }
 }
 public void draw() 
 {	
@@ -20,6 +26,14 @@ public void draw()
 	
 	for(int i = 0; i < shine.length; i++){
   		shine[i].show();
+  	}
+  	for(int i = 0; i < rock.size(); i++){
+  		rock.get(i).show();
+  		rock.get(i).move();
+  		if(dist(rock.get(i).getX(), rock.get(i).getY(), bob.getX(), bob.getY() ) < 18){
+  			rock.remove(i);
+  		}
+
   	}
 	
 	bob.show();
