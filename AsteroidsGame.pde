@@ -1,11 +1,12 @@
 //your variable declarations here
 Spaceship bob;
 ArrayList <Asteroid> rock;
-
+ArrayList <Bullet> bang;
 Star[] shine = new Star[150];
 boolean wIsPressed = false;
 boolean dIsPressed = false;
 boolean aIsPressed = false;
+boolean qIsPressed = false;
 public void setup() 
 {
   background(0);
@@ -14,6 +15,7 @@ public void setup()
   for(int i = 0; i < shine.length; i++){
   	shine[i] = new Star();
   }
+  bang = new ArrayList <Bullet> ();
   rock = new ArrayList <Asteroid> ();
   for(int i = 0; i < 10; i++){
   	rock.add(new Asteroid());
@@ -21,6 +23,7 @@ public void setup()
 }
 public void draw() 
 {	
+	
 	fill(0);
 	rect(0,0,600,600);
 	
@@ -31,9 +34,8 @@ public void draw()
   		rock.get(i).show();
   		rock.get(i).move();
   		if(dist(rock.get(i).getX(), rock.get(i).getY(), bob.getX(), bob.getY() ) < 18){
-  			rock.remove(i);
+  			
   		}
-
   	}
 	
 	bob.show();
@@ -55,6 +57,22 @@ public void draw()
 		bob.accelerate(0.05);
 		bob.turn(3);
 	}
+	for(int i = 0; i < bang.size(); i++){
+		bang.get(i).show();
+		bang.get(i).move();
+
+	}
+
+	for(int j = 0; j < rock.size(); j++){
+		for(int i = 0; i < bang.size(); i++){
+			if(dist(rock.get(j).getX(), rock.get(j).getY(),bang.get(i).getX(), bang.get(i).getY() ) < 18){
+  				rock.remove(j);
+  				bang.remove(i);
+  			}
+  			break;
+		}
+	}
+		
 }
 
 
@@ -72,6 +90,9 @@ public void keyPressed(){
 	if(key == 'e'){
 		bob.hyperspace();
 	}
+	if(key == 'q'){
+		bang.add(new Bullet(bob));
+	}
 }
 
 public void keyReleased(){
@@ -83,5 +104,8 @@ public void keyReleased(){
 	}
 	if(key == 'a'){
 		aIsPressed = false;
+	}
+	if(key == 'q'){
+		qIsPressed = false;
 	}
 }
