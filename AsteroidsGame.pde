@@ -34,7 +34,7 @@ public void draw()
   		rock.get(i).show();
   		rock.get(i).move();
   		if(dist(rock.get(i).getX(), rock.get(i).getY(), bob.getX(), bob.getY() ) < 18){
-  			
+  			rock.remove(i);
   		}
   	}
 	
