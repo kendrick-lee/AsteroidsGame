@@ -7,8 +7,11 @@ boolean wIsPressed = false;
 boolean dIsPressed = false;
 boolean aIsPressed = false;
 boolean qIsPressed = false;
+int hits = 0;
+int score = 0;
 public void setup() 
 {
+ 
   background(0);
   size(600,600);
   bob = new Spaceship();
@@ -34,8 +37,11 @@ public void draw()
   		rock.get(i).show();
   		rock.get(i).move();
   		if(dist(rock.get(i).getX(), rock.get(i).getY(), bob.getX(), bob.getY() ) < 18){
-  			rock.remove(i);
+  			hits++;
   		}
+  	}
+  	if(hits == 2){
+
   	}
 	
 	bob.show();
@@ -68,11 +74,14 @@ public void draw()
 			if(dist(rock.get(j).getX(), rock.get(j).getY(),bang.get(i).getX(), bang.get(i).getY() ) < 18){
   				rock.remove(j);
   				bang.remove(i);
+  			  	score++;
+  			  	break;
   			}
-  			break;
 		}
 	}
-		
+	fill(255);
+	textSize(20);
+	text("Score:" + score, 20, 25);
 }
 
 
