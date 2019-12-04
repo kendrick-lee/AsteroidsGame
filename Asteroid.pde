@@ -9,7 +9,7 @@ class Asteroid extends Floater
 		xCorners = new int[corners];
 		yCorners = new int[corners];
 		
-		xCorners[0] = -11;
+		xCorners[0] = -10;
  		yCorners[0] = -8;
  		
  		xCorners[1] = 7;
@@ -24,10 +24,10 @@ class Asteroid extends Floater
  		xCorners[4] = -11;
  		yCorners[4] = 8;
  		
- 		xCorners[5] = -5;
+ 		xCorners[5] = -13;
  		yCorners[5] = 0;
  		
- 		myColor = color(166, 161, 148);
+ 		myColor = color(120,120,120);
  		myCenterX = (int) (Math.random()*601);
   		myCenterY = (int) (Math.random()*601);
   		myDirectionX = (int) (Math.random()*5)-2;

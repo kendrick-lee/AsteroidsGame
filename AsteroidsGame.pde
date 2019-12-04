@@ -7,7 +7,7 @@ boolean wIsPressed = false;
 boolean dIsPressed = false;
 boolean aIsPressed = false;
 boolean qIsPressed = false;
-int hits = 0;
+int health = 100;
 int score = 0;
 public void setup() 
 {
@@ -37,10 +37,10 @@ public void draw()
   		rock.get(i).show();
   		rock.get(i).move();
   		if(dist(rock.get(i).getX(), rock.get(i).getY(), bob.getX(), bob.getY() ) < 18){
-  			hits++;
+  			health = health - 2;
   		}
   	}
-  	if(hits == 2){
+  	if(health < 0){
 
   	}
 	
@@ -82,6 +82,8 @@ public void draw()
 	fill(255);
 	textSize(20);
 	text("Score:" + score, 20, 25);
+	text("Health:" + health,20, 50);
+
 }
 
 
