@@ -9,9 +9,9 @@ boolean aIsPressed = false;
 boolean qIsPressed = false;
 int health = 100;
 int score = 0;
+
 public void setup() 
 {
- 
   background(0);
   size(600,600);
   bob = new Spaceship();
@@ -20,16 +20,31 @@ public void setup()
   }
   bang = new ArrayList <Bullet> ();
   rock = new ArrayList <Asteroid> ();
-  for(int i = 0; i < 10; i++){
+  for(int i = 0; i < 15; i++){
   	rock.add(new Asteroid());
   }
 }
+
 public void draw() 
 {	
-	
+	if(health <= 0){
+  		fill(255);
+		textSize(40);
+		textAlign(CENTER);
+		text("Game Over", 300, 300);
+  		return;
+  	}
+
+  	if(rock.size() == 0){
+  		fill(255);
+		textSize(40);
+		textAlign(CENTER);
+		text("You Win", 300, 300);
+  		return;
+  	}
+
 	fill(0);
 	rect(0,0,600,600);
-	
 	for(int i = 0; i < shine.length; i++){
   		shine[i].show();
   	}
@@ -39,9 +54,6 @@ public void draw()
   		if(dist(rock.get(i).getX(), rock.get(i).getY(), bob.getX(), bob.getY() ) < 18){
   			health = health - 2;
   		}
-  	}
-  	if(health < 0){
-
   	}
 	
 	bob.show();
@@ -81,12 +93,10 @@ public void draw()
 	}
 	fill(255);
 	textSize(20);
-	text("Score:" + score, 20, 25);
-	text("Health:" + health,20, 50);
-
+	textAlign(CENTER);
+	text("Score:" + score, 55, 25);
+	text("Health:" + health,55, 50);
 }
-
-
 
 public void keyPressed(){
 	if(key == 'w'){
@@ -103,6 +113,30 @@ public void keyPressed(){
 	}
 	if(key == 'q'){
 		bang.add(new Bullet(bob));
+	}
+	if(key == 'r'){
+		health = 100;
+		score = 0;
+		bob.restart();
+		for(int i = 0; i < rock.size();i++){
+			rock.remove(i);
+			i--;
+		}
+		for(int i = 0; i < 15; i++){
+  			rock.add(new Asteroid());
+  		}
+	}
+	if(key == 'i'){
+		health = 100;
+		score = 0;
+		bob.restart();
+		for(int i = 0; i < rock.size();i++){
+			rock.remove(i);
+			i--;
+		}
+		for(int i = 0; i < 250; i++){
+  			rock.add(new Asteroid());
+  		}
 	}
 }
 
